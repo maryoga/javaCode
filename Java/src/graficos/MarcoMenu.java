@@ -1,5 +1,6 @@
 package graficos;
 
+import java.awt.*;
 import javax.swing.*;
 
 public class MarcoMenu {
@@ -30,7 +31,14 @@ class MenuFrame extends JFrame{
 
 class MenuLamina extends JPanel{
 	
+	JTextPane miArea;
+	
 	public MenuLamina() {
+		
+		
+		setLayout(new BorderLayout());
+		
+		JPanel laminaMenu = new JPanel();		
 		
 		JMenuBar miBarra = new JMenuBar();
 		
@@ -44,9 +52,12 @@ class MenuLamina extends JPanel{
 		JMenuItem guardar = new JMenuItem("Guardar");
 		JMenuItem guardar_como = new JMenuItem("Guardar como");
 		
-		JMenuItem  cortar = new JMenuItem("Cortar");
-		JMenuItem  copiar = new JMenuItem("Copiar");
-		JMenuItem  pegar = new JMenuItem("Pegar");
+		JMenuItem  cortar = new JMenuItem("Cortar", new ImageIcon("bin/graficos/Cortar.png"));
+		JMenuItem  copiar = new JMenuItem("Copiar", new ImageIcon("bin/graficos/Copiar.png"));
+		JMenuItem  pegar = new JMenuItem("Pegar", new ImageIcon("bin/graficos/Pegar.jpg"));
+		
+		//reubicar la posicion del texto en la opcion del menu
+		copiar.setHorizontalTextPosition(SwingConstants.LEFT);
 		
 		JMenuItem generales = new JMenuItem("Generales");
 	
@@ -58,7 +69,7 @@ class MenuLamina extends JPanel{
 		edicion.add(copiar);
 		edicion.add(pegar);
 		//agregar un separador
-		edicion.addSeparator();		
+		edicion.addSeparator();
 		
 		//agregar el menu opciones
 		JMenu opciones = new JMenu("Opciones");
@@ -79,9 +90,14 @@ class MenuLamina extends JPanel{
 		miBarra.add(edicion);
 		miBarra.add(herramientas);
 		
-		add(miBarra);
+		laminaMenu.add(miBarra);
+		add(laminaMenu, BorderLayout.NORTH);
 		
+		//hacer uso de un JTextPane
+		miArea = new JTextPane();
 		
+		//agregar el control miArea (JTextPane) a la lamina principal en la zona central
+		add(miArea, BorderLayout.CENTER);
 		
 		
 	}
